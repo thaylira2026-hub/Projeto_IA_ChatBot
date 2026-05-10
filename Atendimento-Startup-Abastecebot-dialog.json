@@ -1,0 +1,649 @@
+{
+  "intents": [
+    {
+      "intent": "Adicionar_lista",
+      "examples": [
+        {
+          "text": "Como faço para aumentar a lista de produtos da minha geladeira?"
+        },
+        {
+          "text": "Como posso adicionar mais produtos na minha lista?"
+        },
+        {
+          "text": "Eu queria adicionar um novo kit de compras."
+        },
+        {
+          "text": "Gostaria de adicionar um kit de limpeza na minha despensa."
+        },
+        {
+          "text": "gostaria de adiiconar um novo kit de choccolates na minha lista mensal,quero gastar R$400"
+        },
+        {
+          "text": "Me ajuda a colocar novos itens na minha lista mensal?"
+        },
+        {
+          "text": "Pode me ajudar a cadastrar um novo item para compra automática?"
+        },
+        {
+          "text": "Quero incluir novos produtos na lista"
+        }
+      ],
+      "description": "Como incluir novos itens no sistema"
+    },
+    {
+      "intent": "agradecimento",
+      "examples": [
+        {
+          "text": "Legal, agradeço pelo atendimento!"
+        },
+        {
+          "text": "Muito bom o suporte, obrigado."
+        },
+        {
+          "text": "Muito obrigado pela ajuda!"
+        },
+        {
+          "text": "não"
+        },
+        {
+          "text": "Obrigado pelas informações sobre a CasaAbastecida."
+        },
+        {
+          "text": "Show, era exatamente isso que eu precisava saber."
+        },
+        {
+          "text": "Valeu, tchau!"
+        },
+        {
+          "text": "Valeu, você me ajudou bastante."
+        }
+      ],
+      "description": "Mensagens de cortesia do usuário"
+    },
+    {
+      "intent": "Entrega_de_produtos",
+      "examples": [
+        {
+          "text": "Em quanto tempo as compras chegam na minha casa?"
+        },
+        {
+          "text": "Estou preocupada com os meus produtos, qual a estimativa de entrega?"
+        },
+        {
+          "text": "Gostaria de saber se o meu produto vai chegar mesmo."
+        },
+        {
+          "text": "Os produtos chegam antes de o meu estoque acabar?"
+        },
+        {
+          "text": "Qual é o prazo de entrega da minha despensa?"
+        },
+        {
+          "text": "Quando meus produtos serão entregues?"
+        },
+        {
+          "text": "Quantos dias meus produtos chegam?"
+        }
+      ],
+      "description": "Interações referente as dúvidas sobre a entrega dos produtos"
+    },
+    {
+      "intent": "instalacao_produto",
+      "examples": [
+        {
+          "text": "Como eu faço para instalar o produto?"
+        },
+        {
+          "text": "Como faço para ativar os dispositivos?"
+        },
+        {
+          "text": "É difícil colocar os sensores sozinho?"
+        },
+        {
+          "text": "Gostaria de instalar o produto"
+        },
+        {
+          "text": "Preciso de alguma ferramenta específica para instalar os sensores?"
+        },
+        {
+          "text": "Quero comprar os sensores"
+        },
+        {
+          "text": "Vocês fazem a instalação dos sensores?"
+        }
+      ],
+      "description": "Intenção destinada a instalação de produtos"
+    }
+  ],
+  "entities": [
+    {
+      "entity": "categoria_produto",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Chocolate",
+          "synonyms": [
+            "barras de chocolate",
+            "bombons",
+            "doces",
+            "trufas"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Mercearia",
+          "synonyms": [
+            "comida",
+            "doces",
+            "paes",
+            "utensílios para cozinha"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Padaria",
+          "synonyms": [
+            "bebidas",
+            "frios",
+            "Pão",
+            "pão doce"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "cidade",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Espírito Santo",
+          "synonyms": [
+            "ES",
+            "Espírito-santense",
+            "moqueca capixaba",
+            "Praias"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Minas Gerais",
+          "synonyms": [
+            "Estado do queijo",
+            "MG",
+            "Minadouros",
+            "Minas"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Rio de Janeiro",
+          "synonyms": [
+            "Carioca",
+            "Cidade Maravilhosa",
+            "Rio",
+            "RJ"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "São Paulo",
+          "synonyms": [
+            "Capital",
+            "Paulista",
+            "Sampa",
+            "SP"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sim_nao",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Não",
+          "synonyms": [
+            "agora não",
+            "cancelar",
+            "não quero",
+            "negativo"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Sim",
+          "synonyms": [
+            "beleza",
+            "certo",
+            "ok, sim",
+            "positivo"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-currency",
+      "values": []
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "Bem-vindo",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Olá! Eu sou o AbasteceBot da CasaAbastecida. Como posso te ajudar hoje?"
+              },
+              {
+                "text": "Olá, tudo bem? Sou o AbasteceBot. Em que posso lhe ajudar?\n"
+              },
+              {
+                "text": "Olá, tudo bem? Em que posso te ajudar?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "Bem-vindo"
+    },
+    {
+      "type": "standard",
+      "title": "entrega_pedidos",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Seus produtos serão entregues até 3 dias antes de acabar seu estoque."
+              },
+              {
+                "text": "Em até 3 dias antes dos produtos acabarem"
+              },
+              {
+                "text": "Vai chegar rapidinho, pode ficar em paz que os produtos não vão acabar! Chega em até 3 dias antes deles acabarem"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#Entrega_de_produtos",
+      "dialog_node": "Em outros casos",
+      "previous_sibling": "node_6_1778272371832",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_4_1778287727951",
+      "event_name": "input",
+      "dialog_node": "handler_10_1778287727953"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_4_1778287727951",
+      "event_name": "focus",
+      "dialog_node": "handler_5_1778287727953",
+      "previous_sibling": "handler_10_1778287727953"
+    },
+    {
+      "type": "standard",
+      "title": "São Paulo",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Perfeito! Realizamos a instalação em até  10 dias úteis.\n"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1778274349158",
+      "conditions": "@cidade:(São Paulo)",
+      "dialog_node": "node_10_1778274465471"
+    },
+    {
+      "type": "standard",
+      "title": "Agradecimento",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Obrigado pela preferência!"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#agradecimento",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_10_1778288198318",
+      "previous_sibling": "Em outros casos"
+    },
+    {
+      "type": "standard",
+      "title": "Espírito Santo",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Perfeito! Realizamos a instalação em até 17 dias úteis"
+              },
+              {
+                "text": " "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1778274349158",
+      "conditions": "@cidade:(Espírito Santo)",
+      "dialog_node": "node_1_1778274563049",
+      "previous_sibling": "node_10_1778274465471"
+    },
+    {
+      "type": "standard",
+      "title": "Instalar_Produto_Cidade",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "node_10_1778274465471"
+      },
+      "conditions": "#instalacao_produto && @cidade",
+      "dialog_node": "node_1_1778274759097",
+      "previous_sibling": "Bem-vindo"
+    },
+    {
+      "type": "standard",
+      "title": "Positivo",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Qual a categoria dos produtos que deseja adicionar na lista?\n"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_6_1778272371832",
+      "conditions": "@sim_nao:Sim",
+      "dialog_node": "node_1_1778275642830",
+      "previous_sibling": "slot_4_1778287727951"
+    },
+    {
+      "type": "standard",
+      "title": "Adicionar Lista, Categoria e Valor",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "node_6_1778276069685"
+      },
+      "conditions": "#Adicionar_produtos && @categoria_produto && @sys-currency",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_1_1778288358038",
+      "previous_sibling": "node_1_1778274759097"
+    },
+    {
+      "type": "standard",
+      "title": "Negativo",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Ok, vou reiniciar o atendimento"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_6_1778272371832",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "Bem-vindo"
+      },
+      "conditions": "@sim_nao:Não",
+      "dialog_node": "node_1_1778288879409",
+      "previous_sibling": "node_1_1778275642830"
+    },
+    {
+      "type": "standard",
+      "title": "Negativo - copy 1",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Ok, vou reiniciar o atendimento"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_6_1778276069685",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "Bem-vindo"
+      },
+      "conditions": "@sim_nao:Não",
+      "dialog_node": "node_1_1778289112423",
+      "previous_sibling": "node_7_1778288108580"
+    },
+    {
+      "type": "standard",
+      "title": "Instalar_Produto",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Excelente! Qual cidade você mora?"
+              },
+              {
+                "text": "Maravilha! Para qual cidade deseja a instalação?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "conditions": "#instalacao_produto",
+      "dialog_node": "node_3_1778274349158",
+      "previous_sibling": "node_10_1778288198318"
+    },
+    {
+      "type": "standard",
+      "title": "Minas Gerais",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Perfeito! Realizamos a instalação em até 15 dias úteis"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1778274349158",
+      "conditions": "@cidade:(Minas Gerais)",
+      "dialog_node": "node_4_1778274635950",
+      "previous_sibling": "node_1_1778274563049"
+    },
+    {
+      "type": "standard",
+      "title": "Categoria_do_kit",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Legal. Eu tenho um kit de $categoria_produto com 35 itens contendo: barras, tablets, trufas e bombons de até @sys-currency, com marcas, Nestlé, Lacta e Garoto. Posso adicionar na sua lista mensal?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1778275642830",
+      "context": {
+        "categoria_produto": "@categoria_produto"
+      },
+      "conditions": "@categoria_produto || @sim_nao:Sim",
+      "dialog_node": "node_4_1778275902953"
+    },
+    {
+      "type": "frame",
+      "title": "adicionar_lista",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Legal, vou te ajudar a adicionar novos produtos na lista. Para isso vou lhe fazer algumas perguntas, tudo bem?\n"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#Adicionar_lista",
+      "dialog_node": "node_6_1778272371832",
+      "previous_sibling": "node_1_1778288358038"
+    },
+    {
+      "type": "standard",
+      "title": "Rio de Janeiro",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Perfeito! Realizamos a instalação em até 12 dias úteis"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1778274349158",
+      "conditions": "@cidade:(Rio de Janeiro)",
+      "dialog_node": "node_6_1778274669536",
+      "previous_sibling": "node_4_1778274635950"
+    },
+    {
+      "type": "standard",
+      "title": "Valor do kit",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Legal. Eu tenho um kit com 35 itens contendo barras, tablets, trufas e bombons de até @sys-currency com as marcas Nestlé, Lacta e Garoto. Posso adicionar na sua lista mensal?\n"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_4_1778275902953",
+      "conditions": "@sys-currency || @sim_nao:Sim || @categoria_produto",
+      "dialog_node": "node_6_1778276069685"
+    },
+    {
+      "type": "standard",
+      "title": "adicionando produtos na minha lista mensal",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "O produto foi adicionado na sua lista mensal"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_6_1778276069685",
+      "conditions": "@sim_nao",
+      "dialog_node": "node_7_1778288108580"
+    },
+    {
+      "type": "slot",
+      "parent": "node_6_1778272371832",
+      "dialog_node": "slot_4_1778287727951"
+    }
+  ],
+  "counterexamples": [
+    {
+      "text": "beleza"
+    },
+    {
+      "text": "certo"
+    }
+  ],
+  "system_settings": {
+    "disambiguation": {
+      "prompt": "Você quis dizer:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "Nenhuma das anteriores",
+      "use_connect_to_support_prompt": "Connect to support",
+      "single_answer_clarification_prompt": "Something else"
+    },
+    "human_agent_assist": {
+      "prompt": "Você quis dizer:"
+    }
+  },
+  "learning_opt_out": false,
+  "language": "pt-br",
+  "description": "Feito por Thays Lira de Oliveira RM568799 e Bianca Pereira da Silva RM571077",
+  "name": "Atendimento Startup Abastecebot-dialog"
+}
