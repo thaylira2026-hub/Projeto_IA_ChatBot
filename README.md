@@ -100,12 +100,12 @@ Bot:  Seus produtos serão entregues até 3 dias antes de acabar seu estoque.
   <img src="https://img.shields.io/badge/JSON-000000?style=for-the-badge&logo=json&logoColor=white" />
 </p>
 
-## 👥 Autoras
+## 👥 Autora
 
-| Nome | RM |
+| Nome 
 |---|---|
-| Thays Lira de Oliveira | 568799 |
-| Bianca Pereira da Silva | 571077 |
+| Thays Lira de Oliveira 
+
 
 ---
 
