@@ -100,12 +100,6 @@ Bot:  Seus produtos serão entregues até 3 dias antes de acabar seu estoque.
   <img src="https://img.shields.io/badge/JSON-000000?style=for-the-badge&logo=json&logoColor=white" />
 </p>
 
-## 👥 Autora
-
-| Nome 
-|---|---|
-| Thays Lira de Oliveira 
-
 
 ---
 
